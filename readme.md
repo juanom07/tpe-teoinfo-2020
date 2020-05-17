@@ -26,6 +26,7 @@ Resolver:
     1. Comprimir la imagen que trajo el policía con el código de Huffman asociado a la imagen original.
     1. Comprimir la imagen que trajo el policía utilizando Huffman semi-estático, esta vez utilizando el código generado para la propia imagen. Comparar con el resultado del inciso anterior.
     1. Comparar las tasas de compresión obtenidas por las compresiones en los ejercicios (a), (b), (c) y (d).
+
   **Nota**: el algoritmo decodificador deberá permitir reconstruir los datos generados por el codificador y obtener la imagen original.
 * Tres canales de televisión distintos (Canal 2, Canal 8 y Canal 10) transmiten todos los días la fotografía de Will. Sin embargo, un fenómeno extraño hace que cada canal distorsione las imágenes de diferente forma. Al notarlo, el comisario de policía decidió estudiar el ruido de cada uno, esperando que esta información permita encontrar al joven Will. Considerando que la imagen de entrada a cada canal es la foto de Will provista por su madre al llegar a la estación de policía, y las imágenes a la salida de cada canal son las siguientes, resuelva:
     1. Implementar un algoritmo que calcule la matriz de transición que describe cada canal.
@@ -49,6 +50,7 @@ Título del trabajo, identificación de los integrantes y e-mail de contacto.
 Resumen: de qué se trata el trabajo y qué se estudia. 
 Introducción: breve descripción del problema tratado.
 Desarrollo: explicación de los cálculos realizados y planteo de pseudocódigos de los algoritmos utilizados, análisis de los resultados, comparaciones, gráficos, etc.
+
 **NOTA**: utilizar pseudocódigos para describir en el informe los algoritmos implementados (no código fuente).
 Conclusiones: qué se hizo en el trabajo y qué resultados se obtuvieron.
 
