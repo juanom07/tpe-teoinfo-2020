@@ -42,48 +42,50 @@ his2 = obtener_histograma(imgWill5)
 his2.show()
 
 
-def getMedia(imagen):
-    media = 0
-    for i in range(imagen.shape[0]):
-        for j in range(imagen.shape[1]):
-            media += imagen[i,j,0]
-    media = media/(imagen.shape[0]*imagen.shape[1])
+def getMedia(image):
+    media = 0    
+    for x in np.nditer(image):
+        media += x
+    media = media/(image.shape[0]*image.shape[1])
     return media
 
 
 def getDesvio(imagen, media):
     desvio = 0
-    for i in range(imagen.shape[0]):
-        for j in range(imagen.shape[1]):
-            desvio += ((imagen[i,j,0] - media) * (imagen[i,j,0] - media))
+    for x in np.nditer(imagen):
+            desvio = desvio + ((x - media)**2)
     desvio = desvio/(imagen.shape[0]*imagen.shape[1])
     return math.sqrt(desvio)
 
 def getCorrelacionCruzada(imagenA, imagenB, mediaA, mediaB):
     sxy = 0
-    for i in range(imagenA.shape[0]):
-        for j in range(imagenA.shape[1]):
-            sxy += ((imagenA[i,j,0] - mediaA) * (imagenB[i,j,0] - mediaB))
+    for (x,y) in zip(np.nditer(imagenA),np.nditer(imagenB)):
+        sxy = sxy + ((x - mediaA) * (y - mediaB))
     sxy = sxy/(imagenA.shape[0]*imagenA.shape[1])
     return sxy
 
 def getFactorCorrelacion(imagenA, imagenB):
-    mediaA = getMedia(imagenA)
-    mediaB = getMedia(imagenB)
-    desvioA = getDesvio(imagenA, mediaA)
-    desvioB = getDesvio(imagenB, mediaB)
+    mediaA = np.mean(imagenA)
+    mediaB = np.mean(imagenA)
+    desvioA = np.std(imagenA)
+    desvioB =  np.std(imagenB)
     sxy = getCorrelacionCruzada(imagenA, imagenB, mediaA, mediaB)
     return sxy/(desvioA*desvioB)
 
-res = cv.matchTemplate(imgWillOriginal,imgWill1,cv.TM_CCOEFF_NORMED)
-print(res)
-r = getFactorCorrelacion(imgWillOriginal, imgWill1)
+# res = cv.matchTemplate(imgWill1,imgWillOriginal,cv.TM_CCOEFF_NORMED)
+# print(res)
+r = getFactorCorrelacion(imgWill1[:,:,0], imgWillOriginal[:,:,0])
+print("Image 1")
 print(r)
-r = getFactorCorrelacion(imgWillOriginal, imgWill2)
+r = getFactorCorrelacion(imgWill2[:,:,0], imgWillOriginal[:,:,0])
+print("Image 2")
 print(r)
-r = getFactorCorrelacion(imgWillOriginal, imgWill3)
+r = getFactorCorrelacion(imgWill3[:,:,0], imgWillOriginal[:,:,0])
+print("Image 3")
 print(r)
-r = getFactorCorrelacion(imgWillOriginal, imgWill4)
+r = getFactorCorrelacion(imgWill4[:,:,0], imgWillOriginal[:,:,0])
+print("Image 4")
 print(r)
-r = getFactorCorrelacion(imgWillOriginal, imgWill5)
+r = getFactorCorrelacion(imgWill4[:,:,0], imgWillOriginal[:,:,0])
+print("Image 5")
 print(r)
