@@ -57,7 +57,7 @@ def getCorrelacionCruzada(imagenA, imagenB, mediaA, mediaB):
 
 def getFactorCorrelacion(imagenA, imagenB):
     mediaA = np.mean(imagenA)
-    mediaB = np.mean(imagenA)
+    mediaB = np.mean(imagenB)
     desvioA = np.std(imagenA)
     desvioB =  np.std(imagenB)
     sxy = getCorrelacionCruzada(imagenA, imagenB, mediaA, mediaB)
