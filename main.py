@@ -32,15 +32,6 @@ def obtener_histograma(imagen):
         plt.xlim([0,256])
     return plt
 
-print(obtener_ocurrencia_pixeles(imgWillOriginal))
-print(obtener_ocurrencia_pixeles(imgWill5))
-
-hist = obtener_histograma(imgWillOriginal)
-hist.show()
-
-his2 = obtener_histograma(imgWill5)
-his2.show()
-
 
 def getMedia(image):
     media = 0    
