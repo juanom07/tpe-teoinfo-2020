@@ -166,18 +166,8 @@ def compressedtoBytes(compressed):
         # me quedo con 8 caracteres de la lista de bits
         ocho_bits = compressed[i:i+8]
         n = int(ocho_bits, 2)
-        # print(ocho_bits)
-        # necesito primero convertirlo a entero (4 bytes!) y después a chr (8 bits)
-        # PATCH: para evitar problemas de codificación UNICODE / UTF-8 / etc, mapeamos
-        # ese char que generamos a un byte en codificaciones ASCII extendido (en Python
-        # la llaman latin1).
         byte = bytes([n])
-        # print(byte)
-        # print(chr(int(''.join([str(bit) for bit in ocho_bits]), 2)))
-        # lo pongo en mi lista de bytes
         lista_bytes.append(byte)
-    # imprimo mi representacion en chars
-    # print(lista_bytes)
     return lista_bytes
 
 # lista_de_bits = '10011000011110110110100011111111'
