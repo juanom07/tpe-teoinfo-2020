@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 import math
 import heapq
 import os 
+import struct
 imgWillOriginal = cv.imread("ImagenesWill/Will(Original).bmp")[:,:,0]
 imgWill1 = cv.imread("ImagenesWill/Will_1.bmp")[:,:,0]
 imgWill2 = cv.imread("ImagenesWill/Will_2.bmp")[:,:,0]
@@ -156,8 +157,6 @@ print(dic)
 
 lista_de_bits = compress(dic, imgWillOriginal)
 # print(len(compressed))
-# print(compressed)
-
 # heapq.heapify()
 
 def compressedtoBytes(compressed):
@@ -174,8 +173,35 @@ def compressedtoBytes(compressed):
 
 lista_de_bytes = compressedtoBytes(lista_de_bits)
 
-with open('mi_archivo.teoinfo', 'wb') as f:
-  for byte in lista_de_bytes:
-    f.write(byte)
+def escribirBytesEnArchivo(nombreArchivo, arrBytes):
+    with open(nombreArchivo, 'wb') as f:
+        for byte in arrBytes:
+            f.write(byte)
+    f.close()
+
+escribirBytesEnArchivo('mi_archivo.teoinfo', lista_de_bytes)
 
 print('Tamaño de archivo: {} bytes'.format(os.path.getsize('mi_archivo.teoinfo')))
+
+
+def recuperarBytesEnArchivo(nombreArchivo):
+    bytes_recuperados = []
+    with open(nombreArchivo, 'rb') as f:
+        bytes_leidos = f.read()
+        for b in bytes_leidos:
+            # Recupero cada byte. Elimino los dos primeros caracteres 0b y completo los 8 digitos con 0
+            recuperado = bin(b)[2:].zfill(8)
+            bytes_recuperados.append(recuperado)
+    f.close()
+    return bytes_recuperados
+
+bytesRecuperados = recuperarBytesEnArchivo('mi_archivo.teoinfo')
+
+def recuperarTextoComprimido(arrBinario):
+    resultado = ''
+    for string in arrBinario:
+        resultado = resultado + string
+    return resultado
+
+# Este comprimidoRecuperado es igual a lista_de_bits
+comprimidoRecuperado = recuperarTextoComprimido(bytesRecuperados)
